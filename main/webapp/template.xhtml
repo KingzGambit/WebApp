@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+  <title>NDNU Study Group | Home</title>
+  <link rel="shortcut icon" href="#{resource['images/favicon.ico']}" type="image/x-icon" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link href='http://fonts.googleapis.com/css?family=Cagliostro' rel='stylesheet' type='text/css' />
+
+  <link href="#{resource['css/style.css']}" rel="stylesheet" type="text/css" media="all" />
+  <link href="#{resource['css/camera.css']}" rel="stylesheet" type="text/css" media="all" />
+
+  <script type='text/javascript' src="#{resource['js/jquery.min.js']}"></script>
+  <script type='text/javascript' src="#{resource['js/jquery.mobile.customized.min.js']}"></script>
+  <script type='text/javascript' src="#{resource['js/jquery.easing.1.3.js']}"></script>
+  <script type='text/javascript' src="#{resource['js/camera.min.js']}"></script>
+  <script>
+			jQuery(function() {
+				jQuery('#camera_wrap_4').camera({
+					height : 'auto',
+					loader : 'bar',
+					pagination : false,
+					thumbnails : true,
+					hover : false,
+					opacityOnGrid : false,
+					imagePath : '/resources/images/'
+				});
+			});
+		</script>
+</h:head>
+<h:body>
+  <div class="wrap">
+    <div class="wrapper">
+      <div class="logo">
+        <div id="logo">
+          <h1>
+            <h:link value="NDNU Study Groups" outcome="/index" />
+          </h1>
+        </div>
+      </div>
+      <div class="main_text">
+        <h3></h3>
+        <br></br>
+      </div>
+      <div class="header_right">
+        <div class="cssmenu">
+          <ul>
+            <li><h:link value="Home" outcome="/index" /></li>
+            <li><h:link value="Log In" outcome="/login" rendered="#{baseBean.isLoggedIn() eq false}" /></li>
+            <li><h:link value="Register" outcome="/register" rendered="#{baseBean.isLoggedIn() eq false}" /></li>
+            <li><h:link value="Create Groups" outcome="/app/createStudyGroup" rendered="#{baseBean.isLoggedIn()}" /></li>
+            <li><h:link value="Search Groups" outcome="/app/searchStudyGroups" rendered="#{baseBean.isLoggedIn()}" /></li>
+            <li><h:link value="Manage" outcome="/app/manageMyStudyGroups" rendered="#{baseBean.isLoggedIn()}" /></li>
+            <li><h:link value="About" outcome="/about" /></li>
+            <li><h:outputText value="|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello #{loginBean.studentFirstName()}!" rendered="#{baseBean.isLoggedIn()}" /></li>
+            <li><h:form>
+                <div class="logout">
+                  <h:commandLink value="Log Out" action="#{loginBean.logout()}" rendered="#{baseBean.isLoggedIn()}" />
+                </div>
+              </h:form></li>
+          </ul>
+        </div>
+        <ui:insert name="content" />
+        <br></br>
+
+        <div id="footer">
+          <h:link value="Terms of Service" outcome="/termsOfService" />
+          |
+          <h:link value="Privacy Policy" outcome="/privacyPolicy" />
+          | Template by <a href="http://w3layouts.com/">W3Layouts</a> | Copyright 2015
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</h:body>
+</html>

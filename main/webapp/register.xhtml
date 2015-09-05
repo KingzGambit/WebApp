@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="template.xhtml">
+    <ui:define name="content">
+      <div class="main_bg">
+        <div class="wrap2">
+          <div class="wrapper2">
+            <h2 class="style">Student Registration</h2>
+            <div class="grid_1_of_2 images_1_of_2 img_style">
+              <img src="resources/images/dc1.jpg" alt="" align="right" /> <img src="resources/images/dc4.jpg" alt="" align="right" />
+            </div>
+            <div class="contact-form">
+              <h:form id="registrationForm">
+                <h:panelGroup id="messagePanel" layout="block">
+                  <h:message for="messagePanel" style="color:red" />
+                </h:panelGroup>
+                <h:panelGrid columns="3">
+                  <h:outputLabel for="firstName" value="First Name:" />
+                  <h:inputText label="First Name" id="firstName" required="true" size="30" value="#{registrationBean.student.firstName}" />
+                  <h:message for="firstName" style="color:red" />
+
+                  <h:outputLabel for="lastName" value="Last Name:" />
+                  <h:inputText label="Last Name" id="lastName" required="true" size="30" value="#{registrationBean.student.lastName}" />
+                  <h:message for="lastName" style="color:red" />
+
+                  <h:outputLabel for="email" value="Email Address:" />
+                  <h:inputText label="Email" id="email" required="true" size="30" value="#{registrationBean.student.email}" validatorMessage="Email must be from the @ndnu.edu domain. Examples: mary@student.ndnu.edu or john@ndnu.edu">
+                    <f:validateRegex pattern=".+@*ndnu\.edu$" />
+                  </h:inputText>
+                  <h:message for="email" style="color:red" />
+
+                  <h:outputLabel for="password" value="Password:" />
+                  <h:inputSecret label="Password" id="password" required="true" size="30" value="#{registrationBean.student.password}" >
+                    <f:validator validatorId="passwordValidator" />
+                    <f:attribute name="verify" value="#{verifyPassword.submittedValue}" />
+                    <f:ajax event="blur" execute="password verify" render="m_password" />
+                  </h:inputSecret>
+                  <h:message id="m_password" for="password" style="color:red" />
+
+                  <h:outputLabel for="verify" value="Verify Password:" />
+                  <h:inputSecret label="Verification Password" id="verify" required="true" binding="#{verifyPassword}" >
+                    <f:ajax event="blur" execute="password verify" render="m_password m_verify" />
+                  </h:inputSecret>
+                  <h:message id="m_verify" for="verify" style="color:red" />
+                </h:panelGrid>
+                <div>
+                  By creating an account, you agree to the site's <a href="termsOfService.xhtml">Terms of Service</a> and <a href="privacyPolicy.xhtml">Privacy Policy</a>.
+                </div>
+                <br />
+                <h:commandButton action="#{registrationBean.createStudent()}" value="Register" />
+                <br></br>
+                <br></br>
+                <br></br>
+              </h:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

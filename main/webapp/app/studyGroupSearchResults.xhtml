@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+    <ui:composition template="../template.xhtml">
+            <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="topic" value="#{studyGroupSearchResultsBean.studyGroup.topic}"/>
+                <f:viewParam name="location" value="#{studyGroupSearchResultsBean.studyGroup.location}"/>
+                <f:viewParam name="startDate" value="#{studyGroupSearchResultsBean.studyGroup.startDate}" converter="javax.faces.DateTime">
+                <f:converter converterId="dateConverter" />
+                </f:viewParam>
+            </f:metadata>
+            </ui:define>
+        <ui:define name="content">
+        <div class="main_bg">
+      	  <div class="wrap2">
+      		<div class="wrapper2">
+            <h2 class="style">Search Results</h2>
+            <h:form>
+                <h:outputStylesheet library="css" name="table.css" />
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Description</th>
+                        <th>Prerequisites</th>
+                        <th>Location</th>
+                    </tr>
+                    <ui:repeat var="studyGroup" value="#{studyGroupSearchResultsBean.searchResults()}" varStatus="index">
+                        <tr class="#{index.even ? 'even-row' : 'odd-row'}">
+                            <td>
+                                <h:link value="#{studyGroup.topic}" outcome="/studyGroupDetails">
+                                    <f:param name="id" value="#{studyGroup.id}" />
+                               </h:link>
+                            </td>
+                            <td><h:outputText value="#{studyGroup.description}" /></td>
+                            <td><h:outputText value="#{studyGroup.prerequisites}" /></td>
+                            <td>
+                                <h:link value="#{studyGroup.location}" outcome="/studyGroupDetails">
+                                    <f:param name="id" value="#{studyGroup.id}" />
+                                </h:link>
+                             </td>
+                       </tr>
+                    </ui:repeat>
+                </table>
+            </h:form>
+            </div>
+            </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

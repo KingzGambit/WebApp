@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+table {
+	width: 100%;
+}
+
+th {
+	text-align: center;
+	background: none repeat scroll 0 0 #A0A0A0;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 80px;
+}
+
+td {
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.even-row {
+	background: #FFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.odd-row {
+	background: #D3D3D3;
+	border-top: 1px solid #BBBBBB;
+}
+
+.checkbox {
+	text-align: center;
+	vertical-align: middle;
+}

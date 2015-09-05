@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="template.xhtml">
+    <ui:define name="content">
+      <div class="fluid_container">
+        <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+          <div data-src="#{resource['images/slider1.jpg']}" />
+          <div data-src="#{resource['images/slider2.jpg']}" />
+          <div data-src="#{resource['images/slider3.jpg']}" />
+        </div>
+      </div>
+      <div id="content_center">
+        <ui:insert name="content" />
+      </div>
+      <div class="main_text">
+        <h2>Welcome to the NDNU Study Groups Site.</h2>
+        <h3>Search, Join or Create your own Study Group!</h3>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

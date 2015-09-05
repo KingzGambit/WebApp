@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="../template.xhtml">
+    <ui:define name="content">
+      <div class="main_bg">
+        <div class="wrap2">
+          <div class="wrapper2">
+            <h2 class="style">Select a New Group Organizer</h2>
+            <div class="contact-form">
+              <h:form>
+                <h:outputStylesheet library="css" name="table.css" />
+                <h:selectOneMenu id="groupMembers" value="#{updateGroupOrganizerBean.newOrganizerId}">
+                  <f:selectItems value="#{updateGroupOrganizerBean.groupMembers}" />
+                </h:selectOneMenu>
+                <br />
+                <br />
+                <h:commandButton action="#{updateGroupOrganizerBean.updateGroupOrganizer()}" value="Select" />
+              </h:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

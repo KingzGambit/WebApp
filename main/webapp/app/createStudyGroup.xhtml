@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="../template.xhtml">
+    <ui:define name="content">
+      <div class="main_bg">
+        <div class="wrap2">
+          <div class="wrapper2">
+            <h2 class="style">Create a Study Group</h2>
+            <div class="contact-form">
+              <h:form>
+                <h:panelGrid columns="3">
+
+                  <h:outputLabel for="topic" value="Topic:" />
+                  <h:inputText label="Topic" id="topic" required="true" size="60" value="#{createStudyGroupBean.studyGroup.topic}" />
+                  <h:message for="topic" style="color:red" />
+
+                  <h:outputLabel for="description" value="Description:" />
+                  <h:inputTextarea label="Description" id="description" required="false" cols="55" rows="5" value="#{createStudyGroupBean.studyGroup.description}" />
+                  <h:message for="description" style="color:red" />
+
+                  <h:outputLabel for="prerequisites" value="Prerequisites:" />
+                  <h:inputText label="Prerequisites" id="prerequisites" required="false" size="60" value="#{createStudyGroupBean.studyGroup.prerequisites}" />
+                  <h:message for="prerequisites" style="color:red" />
+
+                  <h:outputLabel for="onCampus" value="On Campus:" />
+                  <h:panelGroup>
+                    <h:selectOneRadio label="On Campus" id="onCampus" required="true" value="#{createStudyGroupBean.studyGroup.onCampus}">
+                      <f:selectItem itemValue="#{true}" itemLabel="Yes" />
+                      <f:selectItem itemValue="#{false}" itemLabel="No" />
+                    </h:selectOneRadio>
+                  </h:panelGroup>
+                  <h:message for="onCampus" style="color:red" />
+
+                  <h:outputLabel for="location" value="Location:" />
+                  <h:inputText label="Location" id="location" required="true" size="60" value="#{createStudyGroupBean.studyGroup.location}" />
+                  <h:message for="location" style="color:red" />
+
+                  <h:outputLabel for="maxParticipants" value="Maximum Participants:" />
+                  <h:inputText label="Maximum Participants" id="maxParticipants" required="true" size="60" value="#{createStudyGroupBean.studyGroup.maxParticipants}" />
+                  <h:message for="maxParticipants" style="color:red" />
+
+                  <h:outputLabel for="recurring" value="Recurring:" />
+                  <h:panelGroup>
+                    <h:selectOneRadio label="Recurring" id="recurring" required="true" value="#{createStudyGroupBean.studyGroup.recurring}">
+                      <f:selectItem itemValue="#{true}" itemLabel="Yes" />
+                      <f:selectItem itemValue="#{false}" itemLabel="No" />
+                    </h:selectOneRadio>
+                  </h:panelGroup>
+                  <h:message for="recurring" style="color:red" />
+
+                  <h:outputLabel for="startDate" value="Start Date:" />
+                  <h:inputText label="Start Date" id="startDate" required="true" size="60" value="#{createStudyGroupBean.studyGroup.startDate}" converter="javax.faces.DateTime">
+                    <f:converter converterId="dateConverter" />
+                  </h:inputText>
+                  <h:message for="startDate" style="color:red" />
+
+                  <h:outputLabel for="endDate" value="End Date:" />
+                  <h:inputText label="End Date" id="endDate" required="true" size="60" value="#{createStudyGroupBean.studyGroup.endDate}" converter="javax.faces.DateTime">
+                    <f:converter converterId="dateConverter" />
+                  </h:inputText>
+                  <h:message for="endDate" style="color:red" />
+
+                  <h:outputLabel for="availability" value="Availability:" />
+                  <h:panelGroup>
+                    <table>
+                      <tr>
+                        <th>Day of the Week</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                      </tr>
+                      <ui:repeat id="availability" value="#{createStudyGroupBean.availability}" var="day">
+                        <tr>
+                          <td><h:outputLabel value="#{day.dayOfTheWeek.dayName}" /></td>
+                          <td><h:selectOneMenu value="#{day.startTime}">
+                              <f:selectItem itemLabel="---" noSelectionValue="true" itemValue="#{null}" />
+                              <f:selectItems value="#{createStudyGroupBean.startTime}" />
+                            </h:selectOneMenu></td>
+                          <td><h:selectOneMenu value="#{day.endTime}">
+                              <f:selectItem itemLabel="---" noSelectionValue="true" itemValue="#{null}" />
+                              <f:selectItems value="#{createStudyGroupBean.endTime}" />
+                            </h:selectOneMenu></td>
+                        </tr>
+                      </ui:repeat>
+                    </table>
+                  </h:panelGroup>
+                  <h:message for="availability" style="color:red" />
+                </h:panelGrid>
+
+                <h:commandButton action="#{createStudyGroupBean.createStudyGroup()}" value="Create" />
+              </h:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

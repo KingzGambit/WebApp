@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="template.xhtml">
+    <ui:define name="metadata">
+      <f:metadata>
+        <f:viewParam name="id" value="#{studyGroupDetailsBean.studyGroup}" converter="#{studyGroupConverter}" />
+      </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+    <div class="main_bg">
+      <div class="wrap2">
+      <div class="wrapper2">
+      <h2 class="style">Study Group Details</h2>
+      <div class="contact-form">
+      <h:panelGrid columns="2">
+        <h:outputLabel value="Topic:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.topic}" />
+
+        <h:outputLabel value="Description:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.description}" />
+
+        <h:outputLabel value="Prerequisites:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.prerequisites}" />
+
+        <h:outputLabel value="On Campus:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.onCampus ? 'Yes' : 'No'}" />
+
+        <h:outputLabel value="Location:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.location}" />
+
+        <h:outputLabel value="Maximum Participants:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.maxParticipants}" />
+
+        <h:outputLabel value="Recurring:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.recurring ? 'Yes' : 'No'}" />
+
+        <h:outputLabel value="Start Date:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.startDate}" >
+          <f:convertDateTime pattern="MM/dd/yyyy" />
+        </h:outputText>
+
+        <h:outputLabel value="End Date:" />
+        <h:outputText value="#{studyGroupDetailsBean.studyGroup.endDate}" >
+          <f:convertDateTime pattern="MM/dd/yyyy" />
+        </h:outputText>
+
+        <h:outputStylesheet library="css" name="table.css" />
+        <h:outputLabel value="Availability:" />
+        <h:panelGroup>
+          <table>
+            <tr>
+              <th>Day of the Week</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            <ui:repeat value="#{studyGroupDetailsBean.availability}" var="day" varStatus="index">
+              <tr class="#{index.even ? 'even-row' : 'odd-row'}">
+                <td><h:outputText value="#{day.dayOfTheWeek.dayName}" /></td>
+                <td><h:outputText value="#{day.startTime}" converter="timeConverter" /></td>
+                <td><h:outputText value="#{day.endTime}" converter="timeConverter" /></td>
+              </tr>
+            </ui:repeat>
+          </table>
+        </h:panelGroup>
+        <h:form>
+          <h:commandButton action="#{studyGroupDetailsBean.leaveGroup()}" value="Leave Group" rendered="#{studyGroupDetailsBean.canLeaveGroup()}" />
+          <h:commandButton action="#{studyGroupDetailsBean.joinGroup()}" value="Join Group" rendered="#{studyGroupDetailsBean.canJoinGroup()}" />
+        </h:form>
+      </h:panelGrid>
+      </div>
+	</div>
+	</div>
+	</div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

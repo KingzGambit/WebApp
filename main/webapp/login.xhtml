@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="template.xhtml">
+    <ui:define name="content">
+      <div class="main_bg">
+        <div class="wrap2">
+          <div class="wrapper2">
+            <h2 class="style">Please Log In</h2>
+            <div class="grid_1_of_2 images_1_of_2 img_style">
+              <img src="resources/images/dc3.jpg" alt="" align="right" /> <img src="resources/images/dc2.jpg" alt="" align="right" />
+            </div>
+            <div class="contact-form">
+              <h:form id="loginForm">
+                <h:panelGroup id="messagePanel" layout="block">
+                  <h:message for="messagePanel" style="color:red" />
+                </h:panelGroup>
+                <h:panelGrid columns="3">
+                  <h:outputLabel for="username" value="Username:" />
+                  <h:inputText label="Username" id="username" required="true" size="30" value="#{loginBean.username}" />
+                  <h:message for="username" style="color:red" />
+
+                  <h:outputLabel for="password" value="Password:" />
+                  <h:inputSecret label="Password" id="password" required="true" size="30" value="#{loginBean.password}" />
+                  <h:message for="password" style="color:red" />
+
+                  <h:outputLabel for="rememberMe" value="Remember Me:" />
+                  <h:selectBooleanCheckbox label="Remember Me" id="rememberMe" value="#{loginBean.rememberMe}" />
+                  <br></br>
+                </h:panelGrid>
+                <br></br>
+                <h:commandButton value="Login" action="#{loginBean.login()}" />
+                <br></br>
+                <br></br>
+                <br></br>
+              </h:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

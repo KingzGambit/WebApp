@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:body>
+  <ui:composition template="../template.xhtml">
+    <ui:define name="content">
+      <div class="main_bg">
+        <div class="wrap2">
+          <div class="wrapper2">
+            <h2 class="style">Manage My Study Groups</h2>
+            <div class="contact-form">
+              <h:form id="manageForm">
+                <h:outputStylesheet library="css" name="table.css" />
+                <table>
+                  <tr>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Prerequisites</th>
+                    <th>Location</th>
+                    <th>Edit Group</th>
+                    <th>Leave Group</th>
+                  </tr>
+                  <ui:repeat var="studyGroup" value="#{manageMyStudyGroupsBean.joinedStudyGroups()}" varStatus="index">
+                    <tr class="#{index.even ? 'even-row' : 'odd-row'}">
+                      <td><h:link value="#{studyGroup.topic}" outcome="/studyGroupDetails">
+                          <f:param name="id" value="#{studyGroup.id}" />
+                        </h:link></td>
+                      <td><h:outputText value="#{studyGroup.description}" /></td>
+                      <td><h:outputText value="#{studyGroup.prerequisites}" /></td>
+                      <td><h:outputText value="#{studyGroup.location}" /></td>
+                      <td class="checkbox"><h:commandLink value="Edit" action="#{manageMyStudyGroupsBean.edit(studyGroup.id)}" rendered="#{studyGroup.currentViewerIsOwner eq true}"/></td>
+                      <td class="checkbox"><h:commandLink value="Leave" action="#{manageMyStudyGroupsBean.leave(studyGroup.id)}" /></td>
+                    </tr>
+                  </ui:repeat>
+                  <tr>
+                    <td colspan="5" align="center"><h:panelGroup id="messagePanel" layout="block">
+                        <h:message for="messagePanel" style="color:red" />
+                      </h:panelGroup></td>
+                  </tr>
+                </table>
+              </h:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
